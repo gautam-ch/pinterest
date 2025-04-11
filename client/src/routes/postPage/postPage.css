@@ -1,0 +1,64 @@
+
+.PostPage{
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+.postContainer{
+    display: flex;
+    width: 70%;
+    max-height: 580px;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid #e9e9e9;
+}
+.postImg{
+    flex: 1;
+}
+.postImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.postDetails{
+    flex: 1;
+    height: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.leftArrow{
+     margin-top: 3%;
+}
+.Avatar{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.Avatar img{
+    width: 36px;
+    height: 36px;
+    border-radius: 100%;
+
+}
+.Avatar span{
+    font-size: 14px;
+}
+
+@media (max-width:751px){
+
+    .postContainer {
+        flex-direction: column;
+        max-height: unset;
+    }   
+}
+
+@media (max-width:1127px){
+    .postContainer{
+        width: 100%;
+        margin-right: 16px;
+    }
+}

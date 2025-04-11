@@ -1,0 +1,130 @@
+.CreatePage{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.createTitle{
+    width: 100%;
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.createTitle span{
+       font-weight: 500;
+       font-size: 24px;
+       padding-left: 16px;
+}
+
+.createTitle button{
+    border: none;
+    background-color: #E60023;
+    color: white;
+    padding: 16px;
+    border-radius: 32px;
+    font-weight: bold;
+    margin-right: 16px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.createTitle button:hover{
+    background-color: #aa031c;
+}
+
+.createContainer{
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+}
+
+.addImage {
+    height: 474px;
+    width: 350px;
+    border: 1px dashed grey;
+    background-color: #e9e9e9;
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.uploadIcon{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+}
+.uploadIcon img{
+   width: 32px;
+   height: 32px;
+   border-bottom: 50%;
+   object-fit: cover;
+}
+
+.uploadInfo{
+    position: absolute;
+    bottom: 32px;
+    text-align: center;
+    color: grey;
+    font-size: 14px;
+    padding: 16px;
+}
+.createForm{
+    width: 50%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;    
+}
+
+.createForm label{
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.createForm label:first-child{
+    margin-top: -16px;
+}
+
+
+.createForm  input,select,textarea{
+    width: 100%;
+    border: 1px solid #a1a1a1;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.createForm textarea{
+    resize: none;
+}
+
+small{
+    margin-top: 4px;
+    font-weight: 300;
+    color: grey;
+}
+
+@media (max-width:1100px){
+       .createContainer{
+           flex-direction: column;
+           align-items: center;
+       }
+       .createForm{
+          width: 80%;
+       }
+}
+
+
+@media (max-width:575px){
+   
+    .createForm{
+       width: 100%;
+    }
+}

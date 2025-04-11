@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Icons{
+    display: flex;
+    gap: 16px;
+    font-weight: bolder;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container button{
+    border: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 16px;
+    border-radius: 32px;
+    cursor: pointer;
+}

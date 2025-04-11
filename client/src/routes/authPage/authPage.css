@@ -1,0 +1,75 @@
+.AuthPage{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.authBox{
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border: 2px solid #e1e1e1;
+    border-radius: 12px;
+    box-shadow:0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.authBox h1{
+    margin-top: 8px;
+    font-weight: 400;
+}
+
+.authBox img{
+    margin: auto;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; 
+    object-fit: cover;
+}
+
+.authBox form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.authBox label {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.authBox button{
+    margin-top: 16px;
+    padding: 16px;
+    border-radius: 32px;
+    background-color: #e60023;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.authBox input{
+    padding: 16px;
+    font-size: 14px;
+    border:1px solid #e0e0e0;
+    border-radius: 16px;
+}
+
+.authBox p {
+    margin: auto;
+    margin-top: 8px;
+    font-size: 12px;
+    color: grey;
+    cursor: pointer;
+}
+
+
+.authBox .error{
+    color: #e60023;
+}
