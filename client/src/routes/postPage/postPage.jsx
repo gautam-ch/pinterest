@@ -1,10 +1,39 @@
-import './postPage.css'
-import Comment from '../../components/comment/comment'
-import Image from '../../components/image/image'
-import PostInteraction from '../../components/postInteraction/postInteraction'
-import {Link} from 'react-router';
+import './postPage.css';
+import Comment from '../../components/comment/comment';
+import Image from '../../components/image/image';
+import PostInteraction from '../../components/postInteraction/postInteraction';
+import {useQuery} from '@tanstack/react-query';
+import {Link,useParams} from 'react-router';
+import apiCall from '../../utils/apiRequest';
+
+
+const fetchPin=async({id})=>{
+             
+    try{
+        const res = await apiCall.get(`/pins/${id}`);
+        return res.data;
+    }
+    catch(err){
+        console.log('fetching single pin ',err);
+    }
+}
+
 
 const PostPage=()=>{
+    const {id} = useParams();
+  
+   console.log(id);
+
+    const {isPending,error,data}=useQuery({
+        queryKey:['pin',id],
+        queryFn:()=>( fetchPin({id})) 
+    });
+
+    if(isPending) return 'Loading...';
+    if(error) return 'Something went wrong!';
+    if(!data) return 'Pin not found';
+
+    console.log(data);
     return(
         <div className="PostPage">
 
@@ -22,13 +51,13 @@ const PostPage=()=>{
               <div className="postContainer">
                  
                  <div className='postImg'>
-                <Image path='/pins/pin1.jpeg' alt="img" w="736" />
+                <Image src={data.media} alt="img" w="736" />
                 </div>
                 <div className="postDetails">
                       <PostInteraction/>
-                     <Link to='/gautam' className="Avatar" >     
-                         <Image path='/general/noAvatar.png' alt="avator" />
-                         <span>Gautam Chouhan</span>
+                     <Link to={`/${data.user.username}`} className="Avatar" >     
+                         <Image src= { `${data.user.img}` || '/general/noAvatar.png'} alt="avator" />
+                         <span>{data.user.displayName}</span>
                      </Link>
                 
                       <Comment/>

@@ -3,13 +3,42 @@ import { useState } from 'react';
 import Image from '../../components/image/image';
 import Gallery from '../../components/gallery/gallery';
 import Collections from '../../components/collections/collections';
+import {useParams} from 'react-router-dom';
+import {useQuery} from '@tanstack/react-query';
+import apiCall from '../../utils/apiRequest';
+
+const fetchUser=async({username})=>{
+             
+    try{
+        const res = await apiCall.get(`/users/${username}`);
+        return res.data;
+    }
+    catch(err){
+        console.log('fetching user ',err);
+    }
+}
+
 const UserPage=()=>{
-    const [type,setType] = useState('saved');
+     const [type,setType] = useState('saved');
+     const {username} = useParams();
+  
+     console.log(username);
+
+    const {isPending,error,data}=useQuery({
+        queryKey:['profile',username],
+        queryFn:()=>( fetchUser({username})) 
+    });
+
+    if(isPending) return 'Loading...';
+    if(error) return 'Something went wrong!';
+    if(!data) return 'User not found';
+
+    //  console.log('userdetails',data);
     return(
         <div className="UserPage">
-             <Image path='/general/noAvatar.png' className='avatar'/>
-             <span className='un'>Palak Chouhan</span>
-             <span className='userId'>@palak_0123</span>
+             <Image src={ `${data.img}` || '/general/noAvatar.png'} className='avatar'/>
+             <span className='un'>{data.displayName}</span>
+             <span className='userId'>{`@${data.username}`}</span>
              <div className='followCount'> 124 followers . 20 following</div>
              <div className='userIcons'>
                  <Image path='/general/share.svg'/>
@@ -26,7 +55,7 @@ const UserPage=()=>{
               </div>
 
               <div>
-                 {type==='created'?<Gallery/>:<Collections/>}
+                 {type==='created'?<Gallery userId={data._id}/>:<Collections/>}
               </div>
 
          </div>

@@ -10,9 +10,13 @@ import PostPage from './routes/postPage/postPage.jsx'
 import UserPage from './routes/userPage/userPage.jsx'
 import SearchPage from './routes/searchPage/searchPage.jsx'
 import Mainlayout from './layouts/mainlayout.jsx'
+import {QueryClientProvider,QueryClient} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <QueryClientProvider client={queryClient} >
     <BrowserRouter>
      <Routes>
        <Route element={<Mainlayout/>}>
@@ -26,5 +30,6 @@ createRoot(document.getElementById('root')).render(
       
     </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   </StrictMode>,
 )
