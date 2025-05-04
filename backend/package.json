@@ -1,0 +1,14 @@
+{
+    "name": "pinterest-api",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "node --watch --env-file=.env index.js"
+    },
+    "dependencies": {
+        "bcryptjs": "^3.0.2",
+        "cors": "^2.8.5",
+        "express": "^5.0.1",
+        "mongoose": "^8.13.2"
+    }
+}
