@@ -1,9 +1,13 @@
 import express from 'express';
+import { delComment, getComments,postComment } from '../controllers/comment.controller.js';
+import verifyToken from '../middlewares/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/test',(req,res)=>{
-    return res.json({msg:'hi from comment router'});
-})
+router.get('/post',getComments)
+
+router.post('/',verifyToken,postComment);
+
+router.post('/delete',verifyToken,delComment);
 
 export default router;

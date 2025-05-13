@@ -4,10 +4,10 @@ import { useInfiniteQuery} from '@tanstack/react-query';
 import  apiCall from '../../utils/apiRequest';
 import  InfinteScroll from "react-infinite-scroll-component";
 
-const fetchPins=async({pageParam,search,userId})=>{
+const fetchPins=async({pageParam,search,userId,boardId})=>{
     
    try{
-     const pins = await apiCall.get(`/pins?cursor=${pageParam}&search=${search || ""}&userId=${userId}`);
+     const pins = await apiCall.get(`/pins?cursor=${pageParam}&search=${search || ""}&userId=${userId || ""}&boardId=${boardId || ""}`);
 
     // console.log('fetched pins',pins.data);
 
@@ -18,13 +18,13 @@ const fetchPins=async({pageParam,search,userId})=>{
    }
 }
 
-const Gallery=({search,userId})=>{
+const Gallery=({search,userId,boardId})=>{
 
       
         const {data,hasNextPage,fetchNextPage,status}=useInfiniteQuery(
           {
-            queryKey:['pins',search,userId],
-            queryFn:({pageParam=0})=>(fetchPins({pageParam,search,userId})),
+            queryKey:['pins',search,userId,boardId],
+            queryFn:({pageParam=0})=>(fetchPins({pageParam,search,userId,boardId})),
             initialPageParam:0,
             getNextPageParam:(lastPage,pages)=> lastPage.nextCursor,
           });

@@ -1,10 +1,47 @@
 import './AuthPage.css'
 import Image from '../../components/image/image';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import apiCall from '../../utils/apiRequest';
+import useAuthStore from '../../utils/authStore';
+
 
 const AuthPage=()=>{
     const [isAccount,setIsAccount] = useState(true);
-    const [error,setError] = useState("k");
+    const [error,setError] = useState("");
+    const navigate=useNavigate();
+    const {setCurrentUser} =useAuthStore();
+
+    const handleSubmit =async(e)=>{
+       e.preventDefault();
+
+       const formData = new FormData(e.target);
+
+        const data =  Object.fromEntries(formData);
+
+        // console.log(data);
+
+        try{
+              
+            const res = await  apiCall.post(`/users/auth/${isAccount?'login':'register'}`,data);
+
+            // console.log('res ',res)
+             setCurrentUser(res.data);
+             navigate('/');
+                
+
+        }
+        catch(error){
+            console.log('error in userRegister ',error);
+
+            if (error.response && error.response.data && error.response.data.message) {
+                setError(error.response.data.message); 
+            } else {
+                setError('An unexpected error occurred. Please try again.');
+            }
+            
+        }
+    }
 
     return(
         <div className="AuthPage">
@@ -15,7 +52,7 @@ const AuthPage=()=>{
 
                    {
                       isAccount?(
-                         <form key='login' >
+                         <form key='login' onSubmit={handleSubmit} >
                                 
                             <label forhtml='email'>Email</label>  
                             <input type='email' placeholder='Email' required  id='email' name='email'/>
@@ -24,12 +61,12 @@ const AuthPage=()=>{
                             <input type='password' placeholder='password' required  id='password' name='password'/>
 
                             <button type='submit'>Log In</button>
-                            <p onClick={()=>(setIsAccount(false))}>Don't have an account ? <b>Sign Up</b></p>
+                            <p onClick={()=>(setIsAccount(false),setError(""))}>Don't have an account ? <b>Sign Up</b></p>
                             {error && <p className='error'>{error}</p>} 
 
                           </form>                   
                       ):(
-                        <form key='Signup'>
+                        <form key='Signup' onSubmit={handleSubmit}>
 
                             <label forhtml='username'>Username</label>  
                             <input type='text' placeholder='username' required  id='username' name='username'/>    

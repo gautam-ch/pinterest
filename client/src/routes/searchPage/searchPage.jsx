@@ -6,10 +6,11 @@ const SearchPage=()=>{
     let [searchParams] = useSearchParams();
          
     const value=searchParams.get('search');
+    const boardId=searchParams.get('boardId');
  
     return(
         <div className="SearchPage">
-            <Gallery search={value}/>
+            <Gallery search={value} boardId={boardId} />
         </div>
     )
 }

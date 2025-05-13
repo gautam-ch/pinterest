@@ -60,7 +60,7 @@ const PostPage=()=>{
                          <span>{data.user.displayName}</span>
                      </Link>
                 
-                      <Comment/>
+                      <Comment postId={data._id}/>
         
                 </div>
               </div>

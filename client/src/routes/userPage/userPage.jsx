@@ -55,7 +55,7 @@ const UserPage=()=>{
               </div>
 
               <div>
-                 {type==='created'?<Gallery userId={data._id}/>:<Collections/>}
+                 {type==='created'?<Gallery userId={data._id}/>:<Collections userId={data._id}/>}
               </div>
 
          </div>
