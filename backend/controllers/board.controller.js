@@ -1,5 +1,5 @@
 import {Board} from '../models/board.model.js';
-import { Pin } from '../models/pin.model.js';
+import Save from '../models/save.model.js';
 import mongoose from 'mongoose';
 
 
@@ -53,6 +53,15 @@ export const getBoard =async(req,res)=>{
           }
      ]);
 
-     return  res.status(200).json({boardDetails});
+     const savedPin = await Save.find({user:userId}).populate('pin','media _id height width');
 
+     return  res.status(200).json({boardDetails,savedPin});
+
+}
+
+export const brd=async(req,res)=>{
+       
+     const data = await Board.find({user:req.userId});
+
+     return res.status(200).json(data);
 }

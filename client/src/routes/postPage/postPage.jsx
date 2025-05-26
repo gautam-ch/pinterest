@@ -3,7 +3,7 @@ import Comment from '../../components/comment/comment';
 import Image from '../../components/image/image';
 import PostInteraction from '../../components/postInteraction/postInteraction';
 import {useQuery} from '@tanstack/react-query';
-import {Link,useParams} from 'react-router';
+import {Link,useParams,useNavigate} from 'react-router';
 import apiCall from '../../utils/apiRequest';
 
 
@@ -20,9 +20,14 @@ const fetchPin=async({id})=>{
 
 
 const PostPage=()=>{
+    const navigate= useNavigate();
+    const handleArrow =()=>{
+        navigate(-1);
+    }
+
     const {id} = useParams();
   
-   console.log(id);
+//    console.log(id);
 
     const {isPending,error,data}=useQuery({
         queryKey:['pin',id],
@@ -33,11 +38,13 @@ const PostPage=()=>{
     if(error) return 'Something went wrong!';
     if(!data) return 'Pin not found';
 
+
+   
     console.log(data);
     return(
         <div className="PostPage">
 
-            <div className='leftArrow'>
+            <div className='leftArrow' onClick={handleArrow}>
             <svg
                 height="20"
                 viewBox="0 0 24 24"
@@ -51,12 +58,12 @@ const PostPage=()=>{
               <div className="postContainer">
                  
                  <div className='postImg'>
-                <Image src={data.media} alt="img" w="736" />
+                <Image path={data.media} alt="img" w="736" />
                 </div>
                 <div className="postDetails">
-                      <PostInteraction/>
+                      <PostInteraction postId={id}/>
                      <Link to={`/${data.user.username}`} className="Avatar" >     
-                         <Image src= { `${data.user.img}` || '/general/noAvatar.png'} alt="avator" />
+                         <Image path={data.user.img || "/general/noAvatar.png"} />
                          <span>{data.user.displayName}</span>
                      </Link>
                 

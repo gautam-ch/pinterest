@@ -1,17 +1,66 @@
 import {User} from '../models/user.model.js'
+import follow from '../models/follow.model.js'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 export const getUser =async(req,res)=>{
        const {username} = req.params;
-         
-       const user = await User.findOne({username});
 
+       const user = await User.findOne({username});
        const {hashPassword,...data} = user.toObject();
 
-       res.status(200).json(data);
+       const followerCount = await follow.countDocuments({following:user._id});
+       const followingCount = await follow.countDocuments({follower:user._id});
+
+       const token=req.cookies?.token;
+
+       if(token){
+              jwt.verify(token,process.env.JWT_SECRET,async(err,payload)=>{
+              
+                     if(!err){
+                           const isFollow = await follow.exists({following:user._id,follower:payload.userId});
+
+                           return res.status(200).json({...data,followerCount,followingCount,isFollow:isFollow?true:false});
+                     }                     
+              })
+       }
+       else{
+              return res.status(200).json({...data,followerCount,followingCount,isFollow:false});
+       }
 
 }
+
+export const followUser =async(req,res)=>{
+       const {username} = req.params;
+       
+       const id = await User.findOne({username}).select('_id');
+
+       if(id.equals(req.userId)){
+              return res.status(403).json({message:"Can't follow self!"});
+       }
+
+       const isFollow = await follow.findOne({
+              follower:req.userId,
+              following:id
+       })
+
+       if(isFollow){
+
+              const data = await follow.deleteOne({
+                     follower:req.userId,
+                     following:id
+              })
+
+       }
+       else{
+              const data = await follow.create({
+                     follower:req.userId,
+                     following:id
+              })
+       }
+       return res.status(200).json({message:'Successfully follow/unfollow'});
+}
+
 
 export const registerUser = async(req,res)=>{   
               const  {username,name,password,email} = req.body;

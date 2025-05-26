@@ -53,6 +53,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    cursor:pointer;
 }
 
 .uploadIcon{
@@ -76,6 +77,33 @@
     font-size: 14px;
     padding: 16px;
 }
+.preview{
+    width:350px;
+    position: relative; 
+}
+
+.preview img{
+    width: 100%;
+    border-radius: 32px; 
+}
+
+.editIcon{
+   position: absolute;
+   top: 16px;
+   right: 16px;
+   width: 40px;
+   height: 40px;
+   background-color: white;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 4px;
+   cursor: pointer;
+   border: 1px solid grey;
+}
+
+
 .createForm{
     width: 50%;
     padding: 16px;
@@ -110,6 +138,111 @@ small{
     font-weight: 300;
     color: grey;
 }
+
+
+.createFormItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 28px;
+  }
+
+ .createFormItem label{
+    margin-bottom: -2px;
+ } 
+  
+
+.newBoard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-end;
+  }
+  
+  .newBoardContainer {
+    flex: 1;
+    display: flex;
+  }
+  
+  .newBoardItem {
+    padding: 8px;
+    border-radius: 12px;
+    background-color: #e9e9e9;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  
+  .createBoardButton {
+    background-color: #e50829;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 13px;
+    width: max-content;
+    align-self: flex-end;
+  }
+  
+  .boardForm {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .boardFormContainer {
+    background-color: white;
+    padding: 32px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .boardFormClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+  }
+  
+  .boardFormContainer form {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .boardFormContainer h1 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #a6a6a6;
+  }
+  
+  .boardFormContainer input {
+    border: 2px solid #e9e9e9;
+    border-radius: 16px;
+    padding: 16px;
+    font-size: 15px;
+  }
+  
+  .boardFormContainer button {
+    background-color: #e50829;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+
 
 @media (max-width:1100px){
        .createContainer{

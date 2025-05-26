@@ -46,7 +46,7 @@ const AuthPage=()=>{
     return(
         <div className="AuthPage">
              <div className="authBox">
-                <Image path='/general/logo.png' w={36} h={36} />
+                <Image path='/general/logo.svg' w={36} h={36} />
 
                    <h1>{isAccount?'Login to your account':'Create an Account'}</h1>
 

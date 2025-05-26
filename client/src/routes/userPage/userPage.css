@@ -46,6 +46,10 @@
     background-color: #E60023;
     color: white;
 }
+.userButton button:last-child:disabled{
+    cursor:not-allowed;
+    opacity: 0.5;
+}
 .userButton button:last-child:hover{
     background-color: #af021c;
 }

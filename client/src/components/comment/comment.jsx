@@ -59,7 +59,7 @@ const Comment=({postId})=>{
                    {
                     data.map(cmnt=>(
                         <div className="comment" key={cmnt._id}>
-                        <Image src={  cmnt.user.img || 'general/noAvatar.png'} />
+                        <Image path={  cmnt.user.img || 'general/noAvatar.png'} />
 
                         <div className="commentContain">
                            <span className='username'>{cmnt.user.displayName}</span>

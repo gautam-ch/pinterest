@@ -8,7 +8,7 @@ const LeftBar=()=>{
             
             <div className="menuIcons">
                 <Link to='/' className='menuIcon'>
-                   <Image path='/general/logo.png' className='logo' alt=''/>
+                   <Image path='/general/logo.svg' className='logo' alt=''/>
                 </Link>
                 <Link to='/' className='menuIcon'>
                    <Image path='/general/home.svg' alt=''/>

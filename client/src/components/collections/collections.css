@@ -33,3 +33,11 @@
     font-weight: 300;
     color: grey;
 }
+
+.save{
+    margin-left: 8px;
+    margin-top: 64px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 16px;
+}

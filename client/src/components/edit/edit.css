@@ -1,0 +1,162 @@
+.edit{
+    display:flex;
+    gap: 16px;
+}
+
+.layers{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+    margin-left: 16px;
+}
+
+.layerTitle h3{
+    font-size: 20px;
+    font-weight: 500;    
+}
+.layerTitle p{
+    font-size: 14px;
+    color: grey;
+    margin-top: 8px;
+}
+
+.layer{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    gap: 8px;
+    font-weight: 300;
+    font-size: 14px;
+    border-radius: 16px;
+}
+.layerImg{
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+    border-radius: 8px;
+
+}
+.layer:hover,
+.layer.selected{
+    background-color: #f0f0f0;
+}
+
+.workspace{
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding:64px 0px;
+}
+
+.canvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    width:375px;
+    height: auto;
+    border-radius:32px;
+    overflow: hidden;
+}
+
+.text{
+    position: absolute;
+    z-index: 999;
+    max-width: 100%;
+    border: 1px dashed red;
+}
+.canvas img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.text input{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: inherit;
+    cursor: grab;
+    width: 100%;
+}
+
+.deleteText{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 8px;
+    position: absolute;
+    top: -36px;
+    right: 0px;
+}
+
+
+.options{
+    flex: 1;
+    margin-top: 32px;
+}
+
+.editingOptions{
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+    margin-bottom: 16px;
+}
+
+.editingOptions span{
+   font-weight: 500;
+}
+
+.editingOptions input{
+       border: 1px solid #e0e0e0;
+       border-radius: 8px;
+       padding: 16px;
+}
+.textColor,.bgColor{
+    position: relative;
+}
+
+.colorPreview{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.colorPicker{
+    position: absolute;
+    left: 0;
+    top: 120%;
+}
+
+.orientations,.sizes{
+    padding: 4px;
+    border-radius: 8px;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #e9e9e9;
+    width: max-content;
+}
+
+.orientation,.size{
+    padding: 8px;
+    min-width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.orientation.selected,.size.selected{
+    background-color: white;
+    border-radius: 8px;
+}

@@ -6,6 +6,7 @@ import Collections from '../../components/collections/collections';
 import {useParams} from 'react-router-dom';
 import {useQuery} from '@tanstack/react-query';
 import apiCall from '../../utils/apiRequest';
+import { Follow } from './follow';
 
 const fetchUser=async({username})=>{
              
@@ -36,15 +37,15 @@ const UserPage=()=>{
     //  console.log('userdetails',data);
     return(
         <div className="UserPage">
-             <Image src={ `${data.img}` || '/general/noAvatar.png'} className='avatar'/>
+             <Image path={data.img || '/general/noAvatar.png'} className='avatar'/>
              <span className='un'>{data.displayName}</span>
              <span className='userId'>{`@${data.username}`}</span>
-             <div className='followCount'> 124 followers . 20 following</div>
+             <div className='followCount'> {data.followerCount} followers . {data.followingCount} following</div>
              <div className='userIcons'>
                  <Image path='/general/share.svg'/>
                  <div className='userButton'>
                     <button>Message</button>
-                    <button >Follow</button>
+                    <Follow username={username} isFollow={data.isFollow}/>
                  </div>
                  <Image path='/general/more.svg'/>
              </div>
