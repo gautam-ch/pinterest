@@ -1,4 +1,4 @@
-import './AuthPage.css'
+import './authPage.css'
 import Image from '../../components/image/image';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
