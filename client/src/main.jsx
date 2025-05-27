@@ -12,7 +12,7 @@ import {QueryClientProvider,QueryClient} from '@tanstack/react-query';
 // import UserPage from './routes/userPage/userPage.jsx'
 // import SearchPage from './routes/searchPage/searchPage.jsx'
 
-const Homepage = React.lazy(()=> import("./routes/homePage/homepage.jsx"));
+const Homepage = React.lazy(()=> import("./routes/homepage/homepage.jsx"));
 const AuthPage = React.lazy(()=> import("./routes/authPage/authPage.jsx"));
 const CreatePage = React.lazy(()=> import("./routes/createPage/createPage.jsx"));
 const PostPage = React.lazy(()=> import("./routes/postPage/postPage.jsx"));
