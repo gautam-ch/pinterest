@@ -7,6 +7,7 @@ A feature-rich Pinterest clone built with a modern React stack. Create and manag
 - **Pin Management**: Create, edit, and customize pins with text and orientation controls.
 - **Boards & Interactions**: Like pins, save them to boards, and create new boards.
 - **Comments**: Add and delete comments on pins.
+- **Follow**: Follow each other.
 - **Infinite Scrolling**: Smooth, continuous content loading as you scroll.
 - **Image Optimization**: Integrated with ImageKit.io for fast image transformation and delivery.
 - **State Management**: Global state handled via Zustand.
