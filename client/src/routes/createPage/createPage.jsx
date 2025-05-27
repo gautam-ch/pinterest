@@ -1,4 +1,4 @@
-import './CreatePage.css'
+import './createPage.css'
 import useAuthStore from '../../utils/authStore';
 import IK_Image from '../../components/image/image';
 import { useEffect,useState } from 'react';
