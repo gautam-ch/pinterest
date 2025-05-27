@@ -7,28 +7,24 @@ import apiCall from '../../utils/apiRequest';
 import useAuthStore from '../../utils/authStore';
  const GalleryItem=({item})=>{
 
-    const queryClient = useQueryClient();
+     const {currentUser} = useAuthStore();
+     const queryClient = useQueryClient();
+
      const mutation = useMutation({
         mutationFn:({id,type})=>(apiCall.post(`/pins/checkLike/${id}`,{type})),
         onSuccess:()=>{
             queryClient.invalidateQueries({queryKey:['save',item._id]});
         }
      })
-     const optimizedheight=372*item.height/item.width;
+     
+     const {isPending,error,data}= useQuery({
+          queryKey:['save',item._id],
+          queryFn:()=>(apiCall.get(`/pins/checkLike/${item._id}`).then((res)=> res.data)),
+          enabled:!!currentUser
+     })
 
-       const {currentUser} = useAuthStore();
-        
-       let proc=true,err=true,dt;
-       if(currentUser!=null){
-        const {isPending,error,data}= useQuery({
-            queryKey:['save',item._id],
-            queryFn:()=>(apiCall.get(`/pins/checkLike/${item._id}`).then((res)=> res.data))
-        })
-        proc=isPending;
-        err=error;
-        dt=data;
-        console.log(data);
-       }
+     const optimizedheight=372*item.height/item.width;
+       
 
      
     return(
@@ -38,8 +34,8 @@ import useAuthStore from '../../utils/authStore';
               <Image path={item.media}  alt="test" w={372} h={optimizedheight}/>
                 <Link to={`/pin/${item._id}`} className='overlay'/>
 
-                 {(proc|| err)?'':(
-                           <button className='saveButton' onClick={()=>{mutation.mutate({id:item._id,type:'Save'})} }>{dt.isSaved?'Saved':'Save'}</button>
+                 {(isPending|| error)?'':(
+                           <button className='saveButton' onClick={()=>{mutation.mutate({id:item._id,type:'Save'})} }>{data.isSaved?'Saved':'Save'}</button>
                  ) }  
                 <div className='overlayIcons'>
                     <button>

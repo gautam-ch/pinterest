@@ -7,7 +7,8 @@
 .postContainer{
     display: flex;
     width: 70%;
-    max-height: 580px;
+    max-height: 680px;
+    min-height: 500px;
     border-radius: 32px;
     overflow: hidden;
     border: 1px solid #e9e9e9;

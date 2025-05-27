@@ -13,11 +13,10 @@ const addComment=async(comment)=>{
 
 
 export  const CommentForm= ({postId})=>{
-    const [close,setClose] = useState(false);
-    const [desc,setDesc] = useState("");
+     const [close,setClose] = useState(false);
+     const [desc,setDesc] = useState("");
     
-    const queryClient = useQueryClient();
-
+     const queryClient = useQueryClient();
      const mutation = useMutation({
         mutationFn:addComment,
         onSuccess:()=>{
@@ -26,9 +25,8 @@ export  const CommentForm= ({postId})=>{
               setClose(false);
             }
      })
-
-            
-        const handleSubmit=async(e)=>{
+      
+    const handleSubmit=async(e)=>{
             e.preventDefault();
             try{
                   mutation.mutate({
@@ -39,22 +37,21 @@ export  const CommentForm= ({postId})=>{
             catch(e){
                 console.log('error during comment',e);
             }
-        }
-
-
+    }
 
     const handleClick=(e)=>{
          setDesc(prev=>prev + " " +e.emoji);
          setClose(false);
     }
+
     return (
         <form className='commentForm' onSubmit={handleSubmit}>
             <input type='text' placeholder='Add a comment' onChange={(e)=>(setDesc(e.target.value))} value={desc}></input>
-            <div className='emoji' onClick={()=>setClose((prev)=>(!prev)) }>
-                <div style={{fontSize:'18px'}}>😉</div>
+            <div className='emoji' >
+                <div style={{fontSize:'18px'}} onClick={()=>setClose((prev)=>(!prev)) }>😉</div>
                 {close &&
                     <div className="emojiPicker">
-                    <EmojiPicker onEmojiClick={handleClick}/>
+                    <EmojiPicker onEmojiClick={handleClick} height={400}/>
                 </div>
                 }
             </div>
